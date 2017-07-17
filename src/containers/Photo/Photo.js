@@ -16,7 +16,7 @@ class Mars extends React.Component {
         this.showImg = this.showImg.bind(this);
         this.handleType = this.handleType.bind(this);
 
-        this.state={ date: '' }
+        this.state={ date: '' };
     }
 
     componentDidMount(){
@@ -31,10 +31,10 @@ class Mars extends React.Component {
     }
 
 
-    getDate (e){
+    getDate (){
       this.setState({ date: this.state.date}, () => {
         this.showImg();
-      })
+      });
     }
     handleType(e) {
     this.setState({ date: e.target.value });
@@ -64,7 +64,7 @@ class Mars extends React.Component {
                     }
                     <p className="text-left">{mars.data.date}</p>
                     <p className="text-left">{mars.data.explanation}</p>
-                      <input placeholder ="Enter another day" onChange={this.handleType}/> <button onClick={this.getDate }> get image</button>
+                      <input placeholder ="Enter another day" onChange={this.handleType}/> <button onClick={this.getDate}> get image</button>
                 </div>
             </div>
           </div>

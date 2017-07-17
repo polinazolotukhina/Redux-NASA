@@ -4,8 +4,6 @@ export default class List extends Component {
 
   render() {
     const { marsprops } = this.props;
-    console.log("LIST marsprops", marsprops.data.photos );
-
     return (
       <div>
             {
@@ -24,4 +22,4 @@ export default class List extends Component {
       </div>
     )
   }
-}
+};

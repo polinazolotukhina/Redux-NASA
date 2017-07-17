@@ -11,7 +11,6 @@ import initialState from './initialState';
 // Note that I'm using Object.assign to create a copy of current state
 // and update values on the copy.
 export default function marsReducer(state = initialState.mars, action) {
-    console.log('action', action);
     switch (action.type) {
         case MARS_REQUEST:
             return {

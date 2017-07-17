@@ -17,14 +17,13 @@ class Mars extends React.Component {
       const params = {
             sol: 1000,
             page: 3
-          }
+          };
       this.props.actions.getMars('mars-photos/api/v1/rovers/curiosity/photos',params);
 
     }
 
     render() {
         const { mars } = this.props;
-        console.log("Hello mars.data.photos!!!!", mars.data.photos)
         return (
           <div className="container">
             <div className="row">
