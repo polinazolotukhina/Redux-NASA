@@ -13,7 +13,7 @@ const Navigation = () => {
                         <span className="icon-bar" />
                         <span className="icon-bar" />
                     </button>
-                    <IndexLink to="/" className="navbar-brand">Nasa</IndexLink>
+                    <IndexLink to="/" className="navbar-brand"><img src="../../styles/nasa-logo.svg"/></IndexLink>
                 </div>
                 <div id="navbar" className="navbar-collapse collapse">
                     <ul className="nav navbar-nav">

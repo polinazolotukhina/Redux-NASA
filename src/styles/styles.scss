@@ -4,6 +4,19 @@ body {
 img{
   width: 100%;
 }
+.navbar-nav>li>a{
+  padding: 30px 20px;
+}
+.navbar-brand{
+  height: 100%;
+    img{
+      height: 50px;
+  }
+}
+.load{
+  text-align: center;
+  margin-top: 100px;
+}
 .marsPic{
   min-height: 160px;
   border-radius: 50%;
@@ -14,12 +27,70 @@ img{
 .center{
   text-align: center;
 }
-h2{
-  margin: 30px 0;
-}
 .logo{
   width: 7%!important;
 }
-.btn{
-  margin: 0 5px;
+.cursive{
+  font-family: cursive
+}
+.allInfo{
+  padding:15px 10px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  .btn{
+    float:right;
+  }
+  input{
+    height: 40px;
+    text-align: center;
+  }
+  img{
+    margin:7px 0;
+  }
+}
+.info{
+  .btn{
+    margin:5px;
+  }
+}
+
+
+.fadeIn{
+   animation: fadein 2s;
+   -moz-animation: fadein 2s; /* Firefox */
+   -webkit-animation: fadein 2s; /* Safari and Chrome */
+   -o-animation: fadein 2s; /* Opera */
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
 }

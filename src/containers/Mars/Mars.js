@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as actions from '../../actions/marsActions';
 import List  from '../../components/List';
+const FontAwesome = require('react-fontawesome');
 
 
 
@@ -28,9 +29,15 @@ class Mars extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h1>Martian Rotation</h1>
+              <h3>Martian Rotation</h3>
+                {  mars.isLoading  ? (<div className ="load">
+                                      <FontAwesome name="spinner" size='4x'spin style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}/>
+                                     </div>):(<List marsprops={mars}/>)}
+
               </div>
-                <List marsprops={mars}/>
+
+
+
             </div>
           </div>
 

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as actions from '../../actions/marsActions';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
-
+const moment = require('moment');
+const FontAwesome = require('react-fontawesome');
 
 
 class Mars extends React.Component {
@@ -14,50 +14,82 @@ class Mars extends React.Component {
         super(props);
         this.showImg = this.showImg.bind(this);
         this.handleType = this.handleType.bind(this);
+        this.showInfo= this.showInfo.bind(this);
 
-        this.state={ date: '' };
+        this.state={
+          date: '',
+          today: moment(),
+          display: 'none',
+          text: 'show more'
+       };
     }
 
     componentDidMount(){
       this.showImg();
     }
-    showImg(params){
+    showImg(params=null){
       this.props.actions.getMars('planetary/apod', params);
     }
     handleType(date) {
       this.showImg({ date: date.format('YYYY-MM-DD') });
+    }
+    showInfo(){
+    const  newDisplay =  this.state.display == "none" ? "block" : "none";
+    const  newText =  this.state.text == 'show more' ? 'show less' : 'show more';
+      this.setState({
+        display: newDisplay,
+        text: newText
+      });
     }
 
     render() {
         const { mars } = this.props;
         return (
           <div className="container">
-            <div className="row">
-              <div className = "col-md-offset-1 col-md-10">
-                <div className="text-center fadeIn">
+
+            <div className="col-md-offset-2 col-md-8">
+              <div className=" allInfo">
+                <div className="row">
+                  <div className = "col-md-12">
+
+                    <h3 className="text-center">{mars.data.title}</h3>
                     {
-                      (mars.data.media_type =="video" ) ?(<h3> Video Of The Day</h3>):(<h3> Photo Of The Day</h3>)
+                      mars.data.copyright && <p className=" text-center cursive">by {mars.data.copyright}</p>
                     }
-                    <h1>{mars.data.title}</h1>
-                    {
-                      mars.data.copyright && <p>by {mars.data.copyright}</p>
+                    <div className="text-center">
+                      <DatePicker
+                        dateFormat="YYYY-MM-DD"
+                        placeholderText ="Choose a day 📆"
+                        maxDate={this.state.today}
+                        selected={this.state.date}
+                        onChange={this.handleType}
+                      />
+                    </div>
+                    {  mars.isLoading  ? (<div className ='load'>
+                                          <FontAwesome name="spinner" size='4x'spin style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}/>
+                                         </div>) : (
+                                              (mars.data.media_type =="video" ) ? (
+                                                <iframe width="100%" height="455"src={mars.data.url}/>
+                                              ):(
+                                                <img className = "fadeIn"  src={mars.data.url}/>
+                                          )
+
+                                        )
+
                     }
 
+                    <p  className = "fadeIn" style={{display:this.state.display}}> {mars.data.explanation} <hr/></p>
+                    </div>
+                    <div className="col-md-6">
                     {
-                      (mars.data.media_type =="video" ) ? (
-                        <iframe width="520" height="355"src={mars.data.url}/>
-                      ):(
-                        <img src={mars.data.url}/>
-                      )
+                      (mars.data.media_type =="video" ) ?(<p> Video Of The Day</p>):(<p> Photo Of The Day, {mars.data.date}</p>)
                     }
-                    <p className="text-left">{mars.data.date}</p>
-                    <p className="text-left">{mars.data.explanation}</p>
-                    <DatePicker
-                      dateFormat="YYYY-MM-DD"
-                      selected={this.state.date}
-                      onChange={this.handleType}
-                    />
-                </div>
+                  </div>
+                  <div className="col-md-6">
+                    <button className="btn btn-default" onClick={this.showInfo}> {this.state.text}</button>
+                  </div>
+
+              </div>
             </div>
           </div>
         </div>
