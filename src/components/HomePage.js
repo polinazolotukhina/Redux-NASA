@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 
 const HomePage = () => {
   return (
+
     <div className="info">
         <div className = "container">
           <div className="row">
@@ -17,10 +18,14 @@ const HomePage = () => {
 
         NASA science is focused on better understanding Earth through the Earth Observing System,[13] advancing heliophysics through the efforts of the Science Mission Directorate's Heliophysics Research Program,[14] exploring bodies throughout the Solar System with advanced robotic spacecraft missions such as New Horizons,[15] and researching astrophysics topics, such as the Big Bang, through the Great Observatories and associated programs.[16] NASA shares data with various national and international organizations such as from the Greenhouse Gases Observing Satellite. Since 2011, NASA has been criticized for low cost efficiency, achieving little results in return for high development costs.
             </p>
+                      <Link className="btn btn-default" to="mars">Mars Photos</Link>
+                      <Link className="btn btn-default" to="photo">Photo of the day</Link>
             </div>
           </div>
         </div>
     </div>
+
+
   );
 };
 

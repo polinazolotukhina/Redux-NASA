@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as actions from '../../actions/marsActions';
-import Calendar  from '../../components/Calendar';
-
-
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 
 
 class Mars extends React.Component {
     constructor(props){
         super(props);
-        this.getDate = this.getDate.bind(this);
         this.showImg = this.showImg.bind(this);
         this.handleType = this.handleType.bind(this);
 
@@ -22,23 +21,12 @@ class Mars extends React.Component {
     componentDidMount(){
       this.showImg();
     }
-    showImg(){
-      const params = {
-            date: this.state.date
-          };
-
+    showImg(params){
       this.props.actions.getMars('planetary/apod', params);
     }
-
-
-    getDate (){
-      this.setState({ date: this.state.date}, () => {
-        this.showImg();
-      });
+    handleType(date) {
+      this.showImg({ date: date.format('YYYY-MM-DD') });
     }
-    handleType(e) {
-    this.setState({ date: e.target.value });
-  }
 
     render() {
         const { mars } = this.props;
@@ -64,7 +52,11 @@ class Mars extends React.Component {
                     }
                     <p className="text-left">{mars.data.date}</p>
                     <p className="text-left">{mars.data.explanation}</p>
-                      <input placeholder ="Enter another day" onChange={this.handleType}/> <button onClick={this.getDate}> get image</button>
+                    <DatePicker
+                      dateFormat="YYYY-MM-DD"
+                      selected={this.state.date}
+                      onChange={this.handleType}
+                    />
                 </div>
             </div>
           </div>
